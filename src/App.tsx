@@ -1,11 +1,10 @@
 import { useUnit } from "effector-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CopyIMG from "./assets/Copy.svg";
 import Alert from "./component/alert";
 import Check from "./assets/Check.svg";
-import { alertState } from "./store/alertStore";
 import { Transaction } from "./store/tramsayionStore";
+import Button from "./component/button";
 
 function App() {
   const { id } = useParams();
@@ -15,14 +14,9 @@ function App() {
     Transaction.event({ id });
   }, []);
 
-  const Copy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    alertState(true);
-  };
-
   return (
     <>
-      <div className="app flex justify-center m-56">
+      <div className="app flex justify-center mt-36 truncate ">
         <div className="grid grid-cols-1 gap-10">
           <div className="bg-[#323242] drop-shadow-xl w-[120vh] h-[200px] grid grid-cols-1 p-10 rounded-lg">
             <div className="font-extrabold text-white text-2xl  ">
@@ -30,16 +24,7 @@ function App() {
             </div>
             <div className="font-bold text-white text-lg flex gap-1">
               TRANSACTION HASH:&#32;
-              <button
-                className="text-[#8F6DD7] flex gap-1"
-                onClick={() => {
-                  Copy(transition.Hash);
-                }}
-              >
-                &#32;
-                {transition.Hash}
-                <img src={CopyIMG} alt="" />
-              </button>
+              <Button text={transition.Hash} />
             </div>
           </div>
           <div className="bg-[#323242] drop-shadow-xl w-[120vh] grid grid-cols-1 p-10 rounded-lg truncate text-[#fff]">
@@ -58,19 +43,51 @@ function App() {
 
                   <tr>
                     <td className="whitespace-nowrap px-4 py-2 font-medium rop-shadow-lg">
-                      Jane Doe
+                      BLOCK
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 rop-shadow-lg">
-                      04/11/1980
+                      <Button text={transition.blockNumber} />
                     </td>
                   </tr>
 
                   <tr>
                     <td className="whitespace-nowrap px-4 py-2 font-medium rop-shadow-lg">
-                      Gary Barlow
+                      FROM
                     </td>
                     <td className="whitespace-nowrap px-4 py-2 rop-shadow-lg">
-                      24/05/1995
+                      <Button text={transition.from} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium rop-shadow-lg">
+                      TO
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 rop-shadow-lg">
+                      <Button text={transition.to} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium rop-shadow-lg">
+                      TIMESTAMP
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 rop-shadow-lg">
+                      {transition.timeStamp}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium rop-shadow-lg">
+                      VALUE
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 rop-shadow-lg">
+                      {transition.value}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium rop-shadow-lg">
+                      GAS
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 rop-shadow-lg">
+                      {transition.gas}
                     </td>
                   </tr>
                 </tbody>

@@ -7,7 +7,7 @@ export default function Alert() {
 
   function Copy() {
     return (
-      <div className="absolute right-[1%] left-[1%] z-[80] flex justify-center lg:right-[20%] lg:left-[20%] ">
+      <div className="fixed right-[1%] left-[1%] bottom-[10%] z-[80] flex justify-center lg:right-[20%] lg:left-[20%] ">
         <div
           role="alert"
           className={`border-indigo-500 bg-indigo-50 w-2/8 rounded-xl  border p-4 shadow-xl`}
