@@ -3,8 +3,13 @@
 @tailwind utilities;
 @tailwind variants;
 
-*{
+* {
   overflow: hidden;
   margin: none;
-  position: none;
+}
+
+.animation-pulse {
+  /*box-shadow: 0 0 0 20px rgba(229,62,62, 0.5);
+    transform: scale(0.8);*/
+  animation: pulse 2s infinite;
 }
